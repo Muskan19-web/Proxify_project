@@ -19,19 +19,21 @@ public class TestExicution {
 	public void url() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.get("https://proxify.gg/login");
-		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+		driver.get("https://proxify.gg/login"); // for visit the url
+		driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS); // take time for all elements
 	}
 	@Test(priority = 0)
 	public void login() throws InterruptedException {
 		Thread.sleep(7000);
-		driver.findElement(By.cssSelector("[type=\'email\']")).sendKeys("user1@gmail.com");
+		driver.findElement(By.cssSelector("[type=\'email\']")).sendKeys("user1@gmail.com"); // For Email
 		Thread.sleep(2000);
-		driver.findElement(By.cssSelector("[type=\'password\']")).sendKeys("6Xw5gf51Z39n");
+		driver.findElement(By.cssSelector("[type=\'password\']")).sendKeys("6Xw5gf51Z39n"); // For password
 		Thread.sleep(5000);
-		driver.findElement(By.cssSelector("[class=\'flex items-center gap-2\']")).click();
+		// Click on captcha manually
+		driver.findElement(By.cssSelector("[class=\'flex items-center gap-2\']")).click(); // Click on login button
 		Thread.sleep(2000);
-		WebElement actualResult =  driver.findElement(By.cssSelector("[class=\'text-sm font-semibold [&+div]:text-xs\']"));
+		
+		WebElement actualResult =  driver.findElement(By.cssSelector("[class=\'text-sm font-semibold [&+div]:text-xs\']"));// Assert the error message
 		String expected = "User deleted";
 		if(actualResult.getText().equalsIgnoreCase(expected)){
 			System.out.println(actualResult.getText());
@@ -40,11 +42,11 @@ public class TestExicution {
 	@Test(priority = 1)
 	public void signUp() throws InterruptedException {
 		Thread.sleep(30000);
-		driver.findElement(By.cssSelector("[class='text-blue-500 hover:underline']")).click();
-		driver.findElement(By.id("username")).sendKeys("Muskan");
-		driver.findElement(By.id("email")).sendKeys("admin@gmail.com");
-		driver.findElement(By.id("password")).sendKeys("7ERssaf51Z39n");
-		driver.findElement(By.cssSelector("[type=\'submit\']")).click();
+		driver.findElement(By.cssSelector("[class='text-blue-500 hover:underline']")).click(); // Click on sign in link
+		driver.findElement(By.id("username")).sendKeys("Muskan"); // for username
+		driver.findElement(By.id("email")).sendKeys("user1@gmail.com"); // for email
+		driver.findElement(By.id("password")).sendKeys("6Xw5gf51Z39n"); // for password
+		driver.findElement(By.cssSelector("[type=\'submit\']")).click(); // click on sign button
 	}
 	
 	@AfterTest
